@@ -2,8 +2,7 @@ package com.sahajsoft.hotel.automation.domain;
 
 import com.google.common.collect.ImmutableList;
 import com.sahajsoft.hotel.automation.domain.sensor.Movement;
-import com.sahajsoft.hotel.automation.domain.sensor.SensorSubject;
-import com.sahajsoft.hotel.automation.domain.sensor.SensorSubjectImpl;
+import com.sahajsoft.hotel.automation.domain.sensor.SensorController;
 import org.junit.Test;
 
 import java.util.Map;
@@ -23,13 +22,13 @@ public class HotelTest {
                 .mainCorridors(ImmutableList.of(mainCorridor))
                 .subCorridors(ImmutableList.of(subCorridor))
                 .build();
-        SensorSubject sensorSubject = SensorSubjectImpl.getSensorSubject();
+        SensorController sensorController = SensorController.getSensorController();
         Movement movement = Movement.builder()
                 .floorId(hotel.getFloors().get(1).getFloorId())
                 .isMovementDetected(true)
                 .subCorridorId(subCorridor.getCorridorId())
                 .build();
-        sensorSubject.movementDetected(movement);
+        sensorController.movementDetected(movement);
         Thread.currentThread().sleep(5000);
         //then
         Map<Integer, Floor> floors = hotel.getFloors();

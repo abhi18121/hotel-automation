@@ -1,6 +1,6 @@
 package com.sahajsoft.hotel.automation.domain;
 
-enum EquipmentStatus {
+public enum EquipmentStatus {
     ON,
     OFF;
 }

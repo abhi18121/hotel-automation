@@ -1,13 +1,11 @@
 package com.sahajsoft.hotel.automation.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 @Builder
 @Getter
-class Corridor {
+@ToString
+public class Corridor {
     private Light light;
     private AirConditioner airConditioner;
     @NonNull

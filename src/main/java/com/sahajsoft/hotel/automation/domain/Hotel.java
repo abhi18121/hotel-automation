@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @Builder
+public
 class Hotel {
     @Getter
     private int numberOfFloors;
@@ -24,14 +25,14 @@ class Hotel {
         }
     }
 
-    private void addFloor(List<Corridor> mainCorridors, List<Corridor> subCorridors, int floorId) {
+    public void addFloor(List<Corridor> mainCorridors, List<Corridor> subCorridors, int floorId) {
         Floor floor = new Floor(floorId);
         floor.addMainCorridors(mainCorridors, CorridorType.MAIN);
         floor.addSubCorridors(subCorridors, CorridorType.SUB);
         this.floors.put(floorId, floor);
     }
 
-    Map<Integer, Floor> getFloors() {
+    public Map<Integer, Floor> getFloors() {
         return floors;
     }
 }

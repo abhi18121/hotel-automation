@@ -54,7 +54,7 @@ public class FloorTest {
         //when
         floor.addMainCorridors(ImmutableList.of(mainCorridor), MAIN);
         //then
-        assertEquals(1, floor.getNumberOfCorridors());
+        assertEquals(1, floor.getNumberOfMainCorridors());
     }
 
     @Test
@@ -148,15 +148,20 @@ public class FloorTest {
         //given
         Corridor subCorridor = getSubCorridor();
         floor.addSubCorridors(ImmutableList.of(subCorridor), SUB);
-        Movement movement = Movement.builder()
-                .floorId(floor.getFloorId())
-                .isMovementDetected(true)
-                .subCorridorId(subCorridor.getCorridorId())
-                .build();
+        Movement movement = getMovement(subCorridor);
         //when
         floor.movementDetected(movement);
         //then
         Map<Integer, Corridor> subCorridors = floor.getSubCorridors();
         assertEquals(EquipmentStatus.ON, subCorridors.get(subCorridor.getCorridorId()).getLight().getEquipmentStatus());
     }
+
+    private Movement getMovement(Corridor subCorridor) {
+        return Movement.builder()
+                .floorId(floor.getFloorId())
+                .isMovementDetected(true)
+                .subCorridorId(subCorridor.getCorridorId())
+                .build();
+    }
+
 }
